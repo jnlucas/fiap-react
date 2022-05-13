@@ -34,17 +34,7 @@ function App() {
 
   }
 
-  function removerUsuario(id){
-      console.log('funcionando' + id);
-
-      axios.delete("https://iot.14mob.com/api-fiap/public/index.php/users/" + id).then( response => {
-          alert('Deu certo removi o usuario')
-
-          window.location = "";
-
-      }).catch( error => console.log(error));
-
-  }
+  
 
   function atualizarUsuarioApi(){
 
@@ -102,7 +92,7 @@ return (
       <p>{ email }</p>
       <p>{ senha }</p>
       
-      <Lista usuarios={usuarios} ></Lista>
+      <Lista usuarios={usuarios} onEditar= { usuario => atualizarUsuario(usuario) } ></Lista>
 
   </div>
     
