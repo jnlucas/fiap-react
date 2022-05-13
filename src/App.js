@@ -64,7 +64,6 @@ function App() {
   function atualizarLista(){
     axios.get('https://iot.14mob.com/api-fiap/public/index.php/users').then( response => {
           setUsuarios(response.data.users);
-          console.log(response);
       })
   }
   
@@ -100,7 +99,10 @@ return (
       <p>{ email }</p>
       <p>{ senha }</p>
       
-      <Lista usuarios={usuarios} atualizarLista = { e => atualizarLista() } onEditar= { usuario => atualizarUsuario(usuario) } ></Lista>
+      <Lista 
+      usuarios={usuarios} 
+      atualizarLista = { e => atualizarLista() } 
+      onEditar= { usuario => atualizarUsuario(usuario) } ></Lista>
 
   </div>
     

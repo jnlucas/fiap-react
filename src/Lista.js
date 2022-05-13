@@ -4,13 +4,9 @@ import axios from "axios";
 function Lista(props){
     
     function removerUsuario(id){
-        console.log('funcionando' + id);
-  
         axios.delete("https://iot.14mob.com/api-fiap/public/index.php/users/" + id).then( response => {
             alert('Deu certo removi o usuario')
-  
-            props.atualizarLista();
-  
+            props.atualizarLista()
         }).catch( error => console.log(error));
   
     }
