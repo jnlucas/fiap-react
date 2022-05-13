@@ -27,6 +27,7 @@ function App() {
       axios.post('https://iot.14mob.com/api-fiap/public/index.php/users', parametros).then(response => {
           if(response.status == 201){
               alert('Ebaaaaa deu certo')
+              atualizarLista();
           }else{
               alert('lascou')
           }
@@ -46,6 +47,7 @@ function App() {
       axios.put('https://iot.14mob.com/api-fiap/public/index.php/users/'+ id, parametros).then(response => {
           if(response.status == 200){
               alert('Ebaaaaa deu certo')
+              atualizarLista();
           }else{
               alert('lascou')
           }
@@ -58,12 +60,17 @@ function App() {
       setEmail(usuario.email);
       setSenha(usuario.password);
   }
-  
-useEffect(() => {
-      axios.get('https://iot.14mob.com/api-fiap/public/index.php/users').then( response => {
+
+  function atualizarLista(){
+    axios.get('https://iot.14mob.com/api-fiap/public/index.php/users').then( response => {
           setUsuarios(response.data.users);
           console.log(response);
       })
+  }
+  
+  
+useEffect(() => {
+  atualizarLista();
   },[])
 
 
@@ -76,6 +83,7 @@ return (
           }else{
               salvarFormulario();
           }
+          
           return false;
       } } > 
       <label>Nome</label>
@@ -92,7 +100,7 @@ return (
       <p>{ email }</p>
       <p>{ senha }</p>
       
-      <Lista usuarios={usuarios} onEditar= { usuario => atualizarUsuario(usuario) } ></Lista>
+      <Lista usuarios={usuarios} atualizarLista = { e => atualizarLista() } onEditar= { usuario => atualizarUsuario(usuario) } ></Lista>
 
   </div>
     

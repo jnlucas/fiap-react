@@ -9,7 +9,7 @@ function Lista(props){
         axios.delete("https://iot.14mob.com/api-fiap/public/index.php/users/" + id).then( response => {
             alert('Deu certo removi o usuario')
   
-            window.location = "";
+            props.atualizarLista();
   
         }).catch( error => console.log(error));
   
